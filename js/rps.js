@@ -19,10 +19,6 @@ getHumanChoice = function () {
 
 
 playGame = function() {
-    let humanScore = 0, computerScore = 0;
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-
 
     playRound = function(humanChoice, computerChoice) {
         humanChoice = humanChoice.toLowerCase();
@@ -79,5 +75,15 @@ playGame = function() {
         
         console.log(message);
     }
+
+    let humanScore = 0, computerScore = 0;
+
+    for (let i = 0; i < 5; i++) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+    }
+
 }
 
+playGame();
