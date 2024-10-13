@@ -3,11 +3,11 @@ getComputerChoice = function() {
     let choice;
 
     if (choiceInt == 0) {
-        choice = "Rock";
+        choice = "rock";
     } else if (choiceInt == 1) {
-        choice = "Paper";
+        choice = "paper";
     } else {
-        choice = "Scissors";
+        choice = "scissors";
     }
     return(choice);
 }
