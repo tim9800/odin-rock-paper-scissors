@@ -1,3 +1,12 @@
+// Choice buttons 
+const btnRock = document.createElement("button");
+const btnPaper = document.createElement("button");
+const btnScissors = document.createElement("button");
+
+btnRock.setAttribute("id", "btnRock");
+btnPaper.setAttribute("id", "btnPaper");
+btnScissors.setAttribute("id", "btnScissors");
+
 function getComputerChoice() {
     let choiceInt = Math.floor(Math.random() * 3);
     let choice;
