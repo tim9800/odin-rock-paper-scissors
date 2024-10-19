@@ -7,6 +7,18 @@ btnRock.setAttribute("id", "btnRock");
 btnPaper.setAttribute("id", "btnPaper");
 btnScissors.setAttribute("id", "btnScissors");
 
+const btns = [btnRock, btnPaper, btnScissors];
+btns.forEach(function(btn) {
+    selection = btn.id.slice(3);
+
+    btn.textContent = selection;
+    btn.addEventListener("click", function() {
+        playRound(selection, getComputerChoice());
+    })
+
+    document.body.appendChild(btn);
+})
+
 function getComputerChoice() {
     let choiceInt = Math.floor(Math.random() * 3);
     let choice;
@@ -26,76 +38,76 @@ function getHumanChoice() {
     return(choice);
 }
 
-
-function playGame() {
-
-    let humanScore = 0, computerScore = 0;
-
-    // for (let i = 0; i < 5; i++) {
-    //     const humanSelection = getHumanChoice();
-    //     const computerSelection = getComputerChoice();
-    //     playRound(humanSelection, computerSelection);
-    // }
-
-    function playRound(humanChoice, computerChoice) {
-        humanChoice = humanChoice.toLowerCase();
-        let outcome;
-        
-        if (humanChoice == computerChoice) {
-            outcome = "Draw";
-        } else if (humanChoice == "rock") {
-            switch (computerChoice) {
-                case "paper":
-                    outcome = "Lose";
-                    break;
-                case "scissors":
-                    outcome = "Win";
-                    break;
-            }
-        } else if (humanChoice == "paper") {
-            switch (computerChoice) {
-                case "rock":
-                    outcome = "Win";
-                    break;
-                case "scissors":
-                    outcome = "Lose";
-                    break;
-            }
-        } else if (humanChoice == "scissors") {
-            switch (computerChoice) {
-                case "rock":
-                    outcome = "Lose";
-                    break;
-                case "paper":
-                    outcome = "Win";
-                    break;
-            }
+function playRound(humanChoice, computerChoice) {
+    humanChoice = humanChoice.toLowerCase();
+    let outcome;
+    
+    if (humanChoice == computerChoice) {
+        outcome = "Draw";
+    } else if (humanChoice == "rock") {
+        switch (computerChoice) {
+            case "paper":
+                outcome = "Lose";
+                break;
+            case "scissors":
+                outcome = "Win";
+                break;
         }
-    
-        let message;
-        switch (outcome) {
-            case "Draw":
-                message = `It's a draw! You and the computer both chose ${humanChoice}`;
+    } else if (humanChoice == "paper") {
+        switch (computerChoice) {
+            case "rock":
+                outcome = "Win";
                 break;
-        
-            case "Win":
-                message = `You win! Your choice (${humanChoice}) beats the computer's choice (${computerChoice})`;
-                humanScore++;
+            case "scissors":
+                outcome = "Lose";
                 break;
-    
-            case "Lose":
-                message = `You lose! Your choice (${humanChoice}) is beaten by the computer's choice (${computerChoice})`;
-                computerScore++;
-                break;
-    
         }
-        
-        console.log(message);
+    } else if (humanChoice == "scissors") {
+        switch (computerChoice) {
+            case "rock":
+                outcome = "Lose";
+                break;
+            case "paper":
+                outcome = "Win";
+                break;
+        }
     }
 
+    let message;
+    switch (outcome) {
+        case "Draw":
+            message = `It's a draw! You and the computer both chose ${humanChoice}`;
+            break;
     
+        case "Win":
+            message = `You win! Your choice (${humanChoice}) beats the computer's choice (${computerChoice})`;
+            humanScore++;
+            break;
 
+        case "Lose":
+            message = `You lose! Your choice (${humanChoice}) is beaten by the computer's choice (${computerChoice})`;
+            computerScore++;
+            break;
+
+    }
+    
+    console.log(message);
 }
 
-playGame();
+
+// function playGame() {
+
+//     let humanScore = 0, computerScore = 0;
+
+//     for (let i = 0; i < 5; i++) {
+//         const humanSelection = getHumanChoice();
+//         const computerSelection = getComputerChoice();
+//         playRound(humanSelection, computerSelection);
+//     }
+
+    
+
+// }
+
+// playGame();
 
