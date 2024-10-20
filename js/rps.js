@@ -37,6 +37,7 @@ divAnnounce.textContent = "Rock, paper or scissors? Click a button to play." +
 " First to five points wins!"
 document.body.appendChild(divAnnounce);
 
+
 function getComputerChoice() {
     let choiceInt = Math.floor(Math.random() * 3);
     let choice;
@@ -94,33 +95,59 @@ function playRound(humanChoice, computerChoice) {
     
         case "Win":
             message = `You win! Your choice (${humanChoice}) beats the computer's choice (${computerChoice})`;
+            updateAnnounce(message)
             humanScore++;
+            updateScore();
             break;
 
         case "Lose":
             message = `You lose! Your choice (${humanChoice}) is beaten by the computer's choice (${computerChoice})`;
+            updateAnnounce(message)
             computerScore++;
+            updateScore();
             break;
 
     }
+
+    checkForWinner();
     
-    console.log(message);
 }
 
+function updateScore() {
+    divScore.textContent = `You: ${humanScore} | Computer: ${computerScore}`;
+}
 
-function playGame() {
+function updateAnnounce(message) {
+    divAnnounce.textContent = message;
+};
 
-    let humanScore = 0, computerScore = 0;
-
-    for (let i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
+function checkForWinner() {
+    if (computerScore == 5 || humanScore == 5) {
+        if (computerScore == 5) {
+            announceWinner("computer");
+        } else {
+            announceWinner("human");
+        }
+        stopGame();
     }
-
-    
-
 }
 
-playGame();
+
+
+function announceWinner(winner) {
+    let winnerMessage;
+    if (winner == "computer") {
+        winnerMessage = "The computer wins the game! Refresh the page to start a new game."
+    } else {
+        winnerMessage = "You win the game! Refresh the page to start a new game."
+    }
+    updateAnnounce(winnerMessage);
+};
+
+function stopGame() {
+    btns.forEach(function(btn) {
+        btn.remove();
+    })
+};
+
 
