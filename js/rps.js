@@ -10,22 +10,24 @@ btnScissors.setAttribute("id", "btnScissors");
 // Label buttons and add event listeners
 const btns = [btnRock, btnPaper, btnScissors];
 btns.forEach(function(btn) {
-    selection = btn.id.slice(3);
+    const selection = btn.id.slice(3);
 
     btn.textContent = selection;
     btn.setAttribute("style", "margin-bottom: 16px");
     btn.addEventListener("click", function() {
         playRound(selection, getComputerChoice());
-    })
+    }
+);
 
     document.body.appendChild(btn);
 })
 
 // Keep the score
+let humanScore = 0, computerScore = 0;
 const divScore = document.createElement("div");
 divScore.setAttribute("id", "divScore");
-divScore.setAttribute("style", "margin-bottom: 16px;")
-divScore.textContent = "You: 0 | Computer: 0";
+divScore.setAttribute("style", "margin-bottom: 16px;");
+divScore.textContent = `You: ${humanScore} | Computer: ${computerScore}`;
 document.body.appendChild(divScore);
 
 // Announcements
